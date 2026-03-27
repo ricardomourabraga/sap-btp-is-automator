@@ -1,0 +1,63 @@
+# ============================================================
+# SAP BTP Integration Suite Trial - Automation Configuration
+# ============================================================
+# Fill in the values below before running the script.
+# Credentials can also be provided via environment variables:
+#   SAP_BTP_USER, SAP_BTP_PASSWORD
+# ============================================================
+
+# --- SAP BTP Credentials ---
+# Your SAP BTP trial account email and password.
+# If left empty, the script will prompt you or use env vars.
+btp_user: ""
+btp_password: ""
+
+# --- Global Account ---
+# The subdomain of your SAP BTP global account (found in the BTP cockpit URL).
+# Example: "1a2b3c4dtrial-ga" or "mytrial-ga"
+global_account_subdomain: ""
+
+# --- Subaccount Settings ---
+subaccount:
+  # Display name for the new subaccount
+  display_name: "IS-Trial"
+  # Subdomain (must be unique within the global account, lowercase, no spaces)
+  subdomain: "is-trial"
+  # Region for the subaccount (common trial regions: us10, ap21, eu10)
+  region: "us10"
+  # Description
+  description: "Integration Suite Trial Subaccount - Auto-provisioned"
+
+# --- Cloud Foundry Settings ---
+cloud_foundry:
+  # CF org name (usually same as subaccount subdomain)
+  org_name: ""  # Leave empty to auto-generate from subaccount subdomain
+  # CF space name
+  space_name: "dev"
+  # CF instance plan (for trial)
+  instance_plan: "trial"
+
+# --- Integration Suite Settings ---
+integration_suite:
+  # Service name in BTP marketplace
+  service_name: "integrationsuite"
+  # Service plan for trial
+  service_plan: "trial"
+  # Capabilities to activate (informational - done manually in IS UI)
+  capabilities:
+    - "Cloud Integration"
+    - "API Management"
+
+# --- User & Role Settings ---
+users:
+  # The user email to assign role collections to.
+  # If empty, uses btp_user.
+  admin_user: ""
+  # Identity provider (default for trial accounts)
+  identity_provider: "sap.default"
+  # Role collections to assign
+  role_collections:
+    - "Integration_Provisioner"
+    - "PI_Administrator"
+    - "PI_Business_Expert"
+    - "PI_Integration_Developer"
